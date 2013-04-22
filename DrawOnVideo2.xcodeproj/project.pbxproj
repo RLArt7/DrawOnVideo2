@@ -93,11 +93,6 @@
 		93BC0A9C17248E4E002428C5 = {
 			isa = PBXGroup;
 			children = (
-				93BC0AD917248F8C002428C5 /* QuartzCore.framework */,
-				93BC0AD717248F87002428C5 /* AssetsLibrary.framework */,
-				93BC0AD517248F7B002428C5 /* MobileCoreServices.framework */,
-				93BC0AD317248F6D002428C5 /* CoreMedia.framework */,
-				93BC0AD117248F66002428C5 /* MediaPlayer.framework */,
 				93BC0AAE17248E4E002428C5 /* DrawOnVideo2 */,
 				93BC0AA717248E4E002428C5 /* Frameworks */,
 				93BC0AA617248E4E002428C5 /* Products */,
@@ -115,6 +110,11 @@
 		93BC0AA717248E4E002428C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				93BC0AD917248F8C002428C5 /* QuartzCore.framework */,
+				93BC0AD717248F87002428C5 /* AssetsLibrary.framework */,
+				93BC0AD517248F7B002428C5 /* MobileCoreServices.framework */,
+				93BC0AD317248F6D002428C5 /* CoreMedia.framework */,
+				93BC0AD117248F66002428C5 /* MediaPlayer.framework */,
 				93BC0AA817248E4E002428C5 /* UIKit.framework */,
 				93BC0AAA17248E4E002428C5 /* Foundation.framework */,
 				93BC0AAC17248E4E002428C5 /* CoreGraphics.framework */,
