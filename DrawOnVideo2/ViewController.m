@@ -136,8 +136,19 @@
             if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(moviePath)) {
                 UISaveVideoAtPathToSavedPhotosAlbum(moviePath, self,
                                                     @selector(video:didFinishSavingWithError:contextInfo:), nil);
+                videoUrl=[NSURL fileURLWithPath:moviePath];
+                self.videoUrl2=videoUrl;
+
+
             }
         }
+        ViewController *view = [self.storyboard
+                                instantiateViewControllerWithIdentifier:@"MainProjectView"];
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        //    NSLog(@"VIEW LOOOOOOOOKKKKKEEEE HEEREEEE: %@",view);
+        mainProjectView.videoUrl=self.videoUrl2;
+
+        [self presentViewController:view animated:YES completion:nil];
         
     }
     // For responding to the user accepting a newly-captured picture or movie
@@ -153,19 +164,20 @@
             //            AppDataObject* theDataObject = [self theAppDataObject];
             //            theDataObject.videoUrl = videoUrl;
             NSLog(@"view controller: %@",videoUrl);
+            self.videoUrl2=videoUrl;
+
             
         }
-        
         ViewController *view = [self.storyboard
                                 instantiateViewControllerWithIdentifier:@"MainProjectView"];
         view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         //    NSLog(@"VIEW LOOOOOOOOKKKKKEEEE HEEREEEE: %@",view);
-        
+        self.mainProjectView=(MainProjectView *)view;
+        mainProjectView.videoUrl=self.videoUrl;
         [self presentViewController:view animated:YES completion:nil];
         
-        //        [self performSegueWithIdentifier:@"mySegue" sender:sender];
-        //        [self dismissViewControllerAnimated:YES completion:nil];
-        //        [self ]
+        
+       
         
         
         //        [picker release];
