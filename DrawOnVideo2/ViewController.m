@@ -142,11 +142,13 @@
 
             }
         }
+        
         ViewController *view = [self.storyboard
                                 instantiateViewControllerWithIdentifier:@"MainProjectView"];
         view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        //    NSLog(@"VIEW LOOOOOOOOKKKKKEEEE HEEREEEE: %@",view);
-        mainProjectView.videoUrl=self.videoUrl2;
+        self.mainProjectView=(MainProjectView *)view;
+        
+        self.mainProjectView.videoUrl2=self.videoUrl;
 
         [self presentViewController:view animated:YES completion:nil];
         
@@ -161,20 +163,26 @@
             
             NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
             videoUrl=[NSURL fileURLWithPath:moviePath];
-            //            AppDataObject* theDataObject = [self theAppDataObject];
-            //            theDataObject.videoUrl = videoUrl;
-            NSLog(@"view controller: %@",videoUrl);
-            self.videoUrl2=videoUrl;
+            
+            
+            ViewController *view = [self.storyboard
+                                    instantiateViewControllerWithIdentifier:@"MainProjectView"];
+            view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            self.mainProjectView=(MainProjectView *)view;
+            
+            self.mainProjectView.videoUrl2=self.videoUrl;
+//            mainProjectView.moviePath=moviePath;
+            [self presentViewController:view animated:YES completion:nil];
 
             
         }
-        ViewController *view = [self.storyboard
-                                instantiateViewControllerWithIdentifier:@"MainProjectView"];
-        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        //    NSLog(@"VIEW LOOOOOOOOKKKKKEEEE HEEREEEE: %@",view);
-        self.mainProjectView=(MainProjectView *)view;
-        mainProjectView.videoUrl=self.videoUrl;
-        [self presentViewController:view animated:YES completion:nil];
+//        ViewController *view = [self.storyboard
+//                                instantiateViewControllerWithIdentifier:@"MainProjectView"];
+//        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//        //    NSLog(@"VIEW LOOOOOOOOKKKKKEEEE HEEREEEE: %@",view);
+//        self.mainProjectView=(MainProjectView *)view;
+//        mainProjectView.videoUrl=self.videoUrl;
+//        [self presentViewController:view animated:YES completion:nil];
         
         
        

@@ -60,6 +60,7 @@
 @property BOOL newVid;
 @property NSURL  *videoUrl;
 @property NSURL  *videoUrl2;
+//@property NSString *moviePath;
 
 //- (BOOL) startMediaBrowserFromViewController: (UIViewController*) controller
 //                               usingDelegate: (id <UIImagePickerControllerDelegate,

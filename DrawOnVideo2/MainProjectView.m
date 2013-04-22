@@ -25,6 +25,7 @@
 @synthesize newVid;
 @synthesize videoUrl;
 @synthesize videoUrl2;
+//@synthesize moviePath;
 
 @synthesize viewController;
 
@@ -400,17 +401,18 @@
     UIImage * buttonImage = [UIImage imageNamed:@"pictures.png"];
     UIButton *myButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    UILabel *myLabel=[[UILabel alloc] initWithFrame:CGRectMake(289,116,72,21)];
-    UITextField *myTextFiled=[[UITextField alloc] initWithFrame:CGRectMake(289,116,72,21)];
+    UITextField *myTextFiled=[[UITextField alloc] initWithFrame:CGRectMake(262,104,100,21)];
     [myTextFiled setTextColor:[UIColor blackColor]];
     [myTextFiled setTextAlignment:NSTextAlignmentCenter];
     [myTextFiled setBackgroundColor:[UIColor clearColor]];
     [myTextFiled setFont:[UIFont fontWithName: @"Trebuchet MS" size: 17.0]];
     myTextFiled.text=@"Untiteld2";
+//    myTextFiled.text=moviePath;
     [myTextFiled addTarget:self action:@selector(resignFirstResponder)forControlEvents:UIControlEventEditingDidEndOnExit];
 //    myTextFiled.enabled;
 
     
-    myButton.frame = CGRectMake(282, 20, 86, 88); // position in the parent view and set the size of the button
+    myButton.frame = CGRectMake(276, 25, 73, 71); // position in the parent view and set the size of the button
     [myButton setImage:buttonImage forState:UIControlStateNormal];
     // add targets and actions
     [myButton addTarget:self action:@selector(loadData:) forControlEvents:UIControlEventTouchUpInside];
