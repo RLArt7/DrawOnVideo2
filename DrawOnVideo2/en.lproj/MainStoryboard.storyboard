@@ -266,6 +266,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainProjectView.h"/>
             <relationships>
                 <relationship kind="action" name="addVideo:"/>
+                <relationship kind="action" name="loadData:"/>
                 <relationship kind="action" name="pauseVideo:"/>
                 <relationship kind="action" name="resetButton:"/>
                 <relationship kind="action" name="save:"/>
