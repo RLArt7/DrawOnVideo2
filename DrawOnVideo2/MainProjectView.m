@@ -412,7 +412,7 @@
     [myTextFiled setBackgroundColor:[UIColor clearColor]];
     [myTextFiled setFont:[UIFont fontWithName: @"Trebuchet MS" size: 17.0]];
     myTextFiled.text=@"Untiteld2";
-//    myTextFiled.text=moviePathdddd;
+//    myTextFiled.text=moviePathddsdd;
     [myTextFiled addTarget:self action:@selector(resignFirstResponder)forControlEvents:UIControlEventEditingDidEndOnExit];
 //    myTextFiled.enabled;
 
