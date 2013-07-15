@@ -35,7 +35,7 @@
 //- (IBAction)blablatest:(id)sender;
 
 - (IBAction)newProject:(id)sender;
-- (IBAction)addVideo:(id)sender;
+//- (IBAction)addVideo:(id)sender;
 
 
 -(BOOL)startCameraControllerFromViewController:(UIViewController*)controller

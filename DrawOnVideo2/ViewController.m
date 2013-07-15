@@ -19,15 +19,10 @@
 //@synthesize myDelegate;
 @synthesize videoUrl;
 @synthesize videoUrl2;
+@synthesize mainProjectView;
 
 
-//- (AppDataObject*) theAppDataObject;
-//{
-//	id<AppDelegateProtocol> theDelegate = (id<AppDelegateProtocol>) [UIApplication sharedApplication].delegate;
-//	AppDataObject* theDataObject;
-//	theDataObject = (AppDataObject*) theDelegate.theAppDataObject;
-//	return theDataObject;
-//}
+
 
 
 
@@ -119,11 +114,11 @@
     [controller presentViewController:cameraUI animated:YES completion:nil];
     return YES;
 }
-- (void)textFieldDidEndEditing:(NSURL *)info
-{
-//	AppDataObject* theDataObject = [self theAppDataObject];
-//	theDataObject.videoUrl = videoUrl;
-}
+//- (void)textFieldDidEndEditing:(NSURL *)info
+//{
+////	AppDataObject* theDataObject = [self theAppDataObject];
+////	theDataObject.videoUrl = videoUrl;
+//}
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];

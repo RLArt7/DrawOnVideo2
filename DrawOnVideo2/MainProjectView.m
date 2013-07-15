@@ -25,6 +25,7 @@
 @synthesize newVid;
 @synthesize videoUrl;
 @synthesize videoUrl2;
+@synthesize player;
 //@synthesize moviePath;
 
 @synthesize viewController;
@@ -57,6 +58,7 @@
     brush = 10.0;
     opacity = 1.0;
     drawArray =[[NSMutableArray alloc]init];
+    thumbnail=NULL;
     
 //    CGRect firstRect = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) ? CGRectMake(140, 40, 500, 400) : CGRectMake(0, 0, 500, 242);
 //    pushPopPressView_ = [[PSPushPopPressView alloc] initWithFrame:firstRect];
@@ -176,6 +178,7 @@
     
     player = [[MPMoviePlayerController alloc] initWithContentURL:videoUrl];
 //    NSLog(@"the path:%@",videoUrl);
+    thumbnail = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
     [player setMovieSourceType:MPMovieSourceTypeFile];
     [player.view setFrame:self.videoView.bounds];
     
@@ -393,12 +396,14 @@
     
 //    create button in the ViewController
     //create Instanse of ViewController
+    
+    [player pause];
     MainProjectView *view = [self.storyboard
                             instantiateViewControllerWithIdentifier:@"ViewController"];
     view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     self.viewController=view;
     //need to edit that to screenShot of the screen
-    UIImage * buttonImage = [UIImage imageNamed:@"pictures.png"];
+    UIImage * defaultImage = [UIImage imageNamed:@"pictures.png"];
     UIButton *myButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    UILabel *myLabel=[[UILabel alloc] initWithFrame:CGRectMake(289,116,72,21)];
     UITextField *myTextFiled=[[UITextField alloc] initWithFrame:CGRectMake(262,104,100,21)];
@@ -413,7 +418,11 @@
 
     
     myButton.frame = CGRectMake(276, 25, 73, 71); // position in the parent view and set the size of the button
-    [myButton setImage:buttonImage forState:UIControlStateNormal];
+    if(thumbnail!=NULL){
+        [myButton setImage:thumbnail forState:UIControlStateNormal];
+    }else{
+        [myButton setImage:defaultImage forState:UIControlStateNormal];
+    }
     // add targets and actions
     [myButton addTarget:self action:@selector(loadData:) forControlEvents:UIControlEventTouchUpInside];
     // add to a view

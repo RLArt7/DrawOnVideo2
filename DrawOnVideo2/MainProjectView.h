@@ -33,6 +33,7 @@
     CGFloat opacity;
     BOOL mouseSwiped;
     NSMutableArray *drawArray;
+    UIImage *thumbnail;
     
     NSUInteger *activeCount_;
     
