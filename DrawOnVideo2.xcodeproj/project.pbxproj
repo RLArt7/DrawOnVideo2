@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		930C5092179440A80042665D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 930C5091179440A80042665D /* AVFoundation.framework */; };
 		930C50951794A55A0042665D /* ImageViewWithTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C50931794A55A0042665D /* ImageViewWithTime.m */; };
+		93135077179560070056C2FA /* BigBuckBunny_640x360.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 93135076179560070056C2FA /* BigBuckBunny_640x360.m4v */; };
 		93BC0AA917248E4E002428C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BC0AA817248E4E002428C5 /* UIKit.framework */; };
 		93BC0AAB17248E4E002428C5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BC0AAA17248E4E002428C5 /* Foundation.framework */; };
 		93BC0AAD17248E4E002428C5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BC0AAC17248E4E002428C5 /* CoreGraphics.framework */; };
@@ -41,6 +42,7 @@
 		930C5091179440A80042665D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		930C50931794A55A0042665D /* ImageViewWithTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewWithTime.m; sourceTree = "<group>"; };
 		930C50941794A55A0042665D /* ImageViewWithTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewWithTime.h; sourceTree = "<group>"; };
+		93135076179560070056C2FA /* BigBuckBunny_640x360.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; name = BigBuckBunny_640x360.m4v; path = Graphics/BigBuckBunny_640x360.m4v; sourceTree = "<group>"; };
 		93BC0AA517248E4E002428C5 /* DrawOnVideo2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawOnVideo2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93BC0AA817248E4E002428C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		93BC0AAA17248E4E002428C5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -152,6 +154,7 @@
 		93BC0AAF17248E4E002428C5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				93135076179560070056C2FA /* BigBuckBunny_640x360.m4v */,
 				93BC0AB017248E4E002428C5 /* DrawOnVideo2-Info.plist */,
 				93BC0AB117248E4E002428C5 /* InfoPlist.strings */,
 				93BC0AB417248E4E002428C5 /* main.m */,
@@ -242,6 +245,7 @@
 				93BC0AE817255491002428C5 /* share.png in Resources */,
 				93BC0AE917255491002428C5 /* undo_icon2.png in Resources */,
 				93BC0AEB17255773002428C5 /* pictures.png in Resources */,
+				93135077179560070056C2FA /* BigBuckBunny_640x360.m4v in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

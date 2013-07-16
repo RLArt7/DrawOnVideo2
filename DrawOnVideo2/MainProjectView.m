@@ -66,19 +66,10 @@
     drawArray =[[NSMutableArray alloc]init];
     thumbnail=NULL;
     
-   
-    
-//    CGRect firstRect = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) ? CGRectMake(140, 40, 500, 400) : CGRectMake(0, 0, 500, 242);
-//    pushPopPressView_ = [[PSPushPopPressView alloc] initWithFrame:firstRect];
-//    pushPopPressView_.pushPopPressViewDelegate = self;
-//    [pushPopPressVideoView_ setBackgroundColor:NULL];
-//    [self.view addSubview:pushPopPressView_];
-//    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(movieDurationAvailable:) name:MPMovieDurationAvailableNotification object:nil];
     
     
-//    UITapGestureRecognizer *tapTwice=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapTwice:)];
-//    tapTwice.numberOfTapsRequired=2;
-//    [self.view addGestureRecognizer:tapTwice];
+    
     [scroller setContentSize:CGSizeMake(66, 242)];
     
     
@@ -175,28 +166,25 @@
     
     
     
-//     [pushPopPressView_ addSubview:drawView];
 }
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    ViewController *vcDelegate =(ViewController *)segue.destinationViewController;
-//    vcDelegate.myDelegate = self;
-//    vcDelegate.videoUrl=videoUrl;
-//    
-//}
+
 - (IBAction)addVideo:(id)sender{
-//    NSString *moviePath = [[NSBundle mainBundle]pathForResource:@"IMG_1990" ofType:@"mov"];
-//    videoUrl=[NSURL fileURLWithPath:moviePath];
-//    NSLog(@"MainProject: %@",videoUrl2);/Users/harelavikasis/Desktop/ffmpeg-2.0
+
+    ///S TESTING
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *moviePath =
+    [bundle
+     pathForResource:@"BigBuckBunny_640x360"
+     ofType:@"m4v"];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(movieDurationAvailable:) name:MPMovieDurationAvailableNotification object:nil];
+    videoUrl=[NSURL fileURLWithPath:moviePath];
+    ///E TESTING
     
-//    player = [[MPMoviePlayerController alloc] initWithContentURL:videoUrl];
+    
     player = [[MPMoviePlayerController alloc] init];
     player.contentURL=videoUrl;
-
     
-//    NSLog(@"the path:%@",videoUrl);
     thumbnail = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
     [player setMovieSourceType:MPMovieSourceTypeFile];
     [player.view setFrame:self.videoView.bounds];
@@ -225,9 +213,10 @@
 	 object:nil];
 	
 	NSMutableArray *times = [[NSMutableArray alloc] init];
-	for(int i = 0; i < 20; i++) {
+    [times addObject:[NSNumber numberWithInt:1.0]];
+	for(int i = 1; i < 20; i++) {
 		float playbackTime = i * duration/20;
-//		NSLog(@"%f", playbackTime);
+		NSLog(@"playbackTime %f", playbackTime);
 		[times addObject:[NSNumber numberWithInt:playbackTime]];
 	}
 	[self.player requestThumbnailImagesAtTimes:times timeOption: MPMovieTimeOptionExact];
@@ -243,7 +232,9 @@
     UIImage *image;
     
     
-    if(value == nil){
+    if(value != nil){
+        NSLog(@"Error: %@", [value debugDescription]);
+    }else{
         timecode = [userInfo objectForKey: MPMoviePlayerThumbnailTimeKey];
         image =[userInfo objectForKey: MPMoviePlayerThumbnailImageKey];
         NSLog(@"What?? width");
@@ -254,12 +245,12 @@
     
     [thumbnailScrollView addSubview:imageView];
     
-    UITapGestureRecognizer *tapRecognizer =
-    [[UITapGestureRecognizer alloc]
-     initWithTarget:self action:@selector(handleTapFrom:)];
-	[tapRecognizer setNumberOfTapsRequired:1];
-	
-	[imageView addGestureRecognizer:tapRecognizer];
+//    UITapGestureRecognizer *tapRecognizer =
+//    [[UITapGestureRecognizer alloc]
+//     initWithTarget:self action:@selector(handleTapFrom:)];
+//	[tapRecognizer setNumberOfTapsRequired:1];
+//	
+//	[imageView addGestureRecognizer:tapRecognizer];
     
 }
 

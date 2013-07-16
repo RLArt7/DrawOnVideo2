@@ -285,34 +285,6 @@
         <image name="share.png" width="237" height="162"/>
         <image name="undo_icon2.png" width="48" height="48"/>
     </resources>
-    <classes>
-        <class className="MainProjectView" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainProjectView.h"/>
-            <relationships>
-                <relationship kind="action" name="addVideo:"/>
-                <relationship kind="action" name="loadData:"/>
-                <relationship kind="action" name="pauseVideo:"/>
-                <relationship kind="action" name="resetButton:"/>
-                <relationship kind="action" name="save:"/>
-                <relationship kind="action" name="undoButton:"/>
-                <relationship kind="outlet" name="drawView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="scroller" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="tempDrawImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="thumbnailScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="videoView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="newProject:"/>
-                <relationship kind="outlet" name="scroller" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
