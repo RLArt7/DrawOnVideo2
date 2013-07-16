@@ -123,7 +123,7 @@
                                     <constraint firstItem="gdP-lp-IU7" firstAttribute="leading" secondItem="yXf-WR-buh" secondAttribute="leading" type="default" id="yT2-Xs-Ple"/>
                                 </constraints>
                             </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MzN-EY-KI2">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="MzN-EY-KI2">
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="why are you not working??" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hs1-Sw-wot">
                                         <constraints>
@@ -134,32 +134,32 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="hs1-Sw-wot" firstAttribute="top" secondItem="MzN-EY-KI2" secondAttribute="top" constant="14" id="FIy-IJ-qic"/>
-                                    <constraint firstAttribute="bottom" secondItem="hs1-Sw-wot" secondAttribute="bottom" constant="15" id="N0Y-ah-VtG"/>
-                                    <constraint firstAttribute="trailing" secondItem="hs1-Sw-wot" secondAttribute="trailing" constant="143" id="SCR-t9-aFK"/>
-                                    <constraint firstItem="hs1-Sw-wot" firstAttribute="leading" secondItem="MzN-EY-KI2" secondAttribute="leading" constant="163" id="gif-kS-a01"/>
+                                    <constraint firstItem="hs1-Sw-wot" firstAttribute="centerX" secondItem="MzN-EY-KI2" secondAttribute="centerX" type="default" id="3rD-zv-XEC"/>
+                                    <constraint firstItem="hs1-Sw-wot" firstAttribute="top" secondItem="MzN-EY-KI2" secondAttribute="top" constant="9" id="8sS-MP-zHi"/>
+                                    <constraint firstAttribute="trailing" secondItem="hs1-Sw-wot" secondAttribute="trailing" constant="152" id="jEy-XJ-Poz"/>
+                                    <constraint firstAttribute="bottom" secondItem="hs1-Sw-wot" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="lSy-wE-aLv"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="MzN-EY-KI2" firstAttribute="top" secondItem="HtE-hk-xyf" secondAttribute="top" constant="245" id="1KF-pW-BzL"/>
                             <constraint firstItem="WpP-2c-hNR" firstAttribute="bottom" secondItem="k9f-9D-jyo" secondAttribute="bottom" type="default" id="AvF-7a-8Sg"/>
                             <constraint firstItem="ytH-GX-KPU" firstAttribute="bottom" secondItem="WpP-2c-hNR" secondAttribute="bottom" type="default" id="DKn-rv-cNH"/>
                             <constraint firstItem="k9f-9D-jyo" firstAttribute="top" secondItem="HtE-hk-xyf" secondAttribute="top" type="default" id="Ebg-zg-p0r"/>
                             <constraint firstItem="6Wo-Qc-gND" firstAttribute="bottom" secondItem="WpP-2c-hNR" secondAttribute="bottom" type="default" id="Ft8-Nd-i3E"/>
+                            <constraint firstItem="MzN-EY-KI2" firstAttribute="centerX" secondItem="HtE-hk-xyf" secondAttribute="centerX" type="default" id="HoQ-vN-Jjo"/>
+                            <constraint firstItem="MzN-EY-KI2" firstAttribute="leading" secondItem="HtE-hk-xyf" secondAttribute="leading" constant="6" id="JBF-mq-ceh"/>
                             <constraint firstItem="k9f-9D-jyo" firstAttribute="trailing" secondItem="HtE-hk-xyf" secondAttribute="trailing" type="default" id="JuN-lb-Edc"/>
-                            <constraint firstItem="MzN-EY-KI2" firstAttribute="top" secondItem="HtE-hk-xyf" secondAttribute="top" constant="245" id="KsV-HL-XuO"/>
-                            <constraint firstItem="MzN-EY-KI2" firstAttribute="leading" secondItem="HtE-hk-xyf" secondAttribute="leading" constant="6" id="RzN-AL-qmJ"/>
                             <constraint firstItem="WpP-2c-hNR" firstAttribute="top" secondItem="HtE-hk-xyf" secondAttribute="top" type="default" id="SIv-pJ-tR7"/>
                             <constraint firstItem="6Wo-Qc-gND" firstAttribute="trailing" secondItem="ytH-GX-KPU" secondAttribute="trailing" type="default" id="TC9-Uf-I88"/>
                             <constraint firstItem="6Wo-Qc-gND" firstAttribute="leading" secondItem="HtE-hk-xyf" secondAttribute="leading" type="default" id="W5M-qh-LOw"/>
                             <constraint firstItem="6Wo-Qc-gND" firstAttribute="top" secondItem="HtE-hk-xyf" secondAttribute="top" type="default" id="WKh-zM-IZ3"/>
                             <constraint firstItem="ytH-GX-KPU" firstAttribute="trailing" secondItem="WpP-2c-hNR" secondAttribute="trailing" type="default" id="YFQ-7L-SDj"/>
-                            <constraint firstAttribute="bottom" secondItem="MzN-EY-KI2" secondAttribute="bottom" constant="5" id="cBc-gd-3AN"/>
                             <constraint firstItem="ytH-GX-KPU" firstAttribute="leading" secondItem="HtE-hk-xyf" secondAttribute="leading" type="default" id="lZk-4E-fZV"/>
-                            <constraint firstItem="MzN-EY-KI2" firstAttribute="centerX" secondItem="HtE-hk-xyf" secondAttribute="centerX" type="default" id="lf1-mB-V6v"/>
+                            <constraint firstAttribute="bottom" secondItem="MzN-EY-KI2" secondAttribute="bottom" constant="5" id="nZK-s8-18G"/>
                             <constraint firstItem="WpP-2c-hNR" firstAttribute="leading" secondItem="HtE-hk-xyf" secondAttribute="leading" type="default" id="nqs-iT-gZx"/>
                             <constraint firstItem="k9f-9D-jyo" firstAttribute="leading" secondItem="HtE-hk-xyf" secondAttribute="leading" constant="500" id="pDj-UT-dUJ"/>
                             <constraint firstItem="ytH-GX-KPU" firstAttribute="top" secondItem="HtE-hk-xyf" secondAttribute="top" type="default" id="xNn-nn-2aI"/>
@@ -285,6 +285,34 @@
         <image name="share.png" width="237" height="162"/>
         <image name="undo_icon2.png" width="48" height="48"/>
     </resources>
+    <classes>
+        <class className="MainProjectView" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainProjectView.h"/>
+            <relationships>
+                <relationship kind="action" name="addVideo:"/>
+                <relationship kind="action" name="loadData:"/>
+                <relationship kind="action" name="pauseVideo:"/>
+                <relationship kind="action" name="resetButton:"/>
+                <relationship kind="action" name="save:"/>
+                <relationship kind="action" name="undoButton:"/>
+                <relationship kind="outlet" name="drawView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="scroller" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="tempDrawImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="thumbnailScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="videoView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="newProject:"/>
+                <relationship kind="outlet" name="scroller" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

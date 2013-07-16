@@ -4,7 +4,7 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "DrawOnVideo2/MainProjectView.m"
@@ -13,11 +13,11 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "261"
          endingLineNumber = "261"
-         landmarkName = "-makeThumbnailImageViewFromImage:andTimeCode:"
+         landmarkName = "-playerThumbnailImageRequestDidFinish:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "DrawOnVideo2/MainProjectView.m"
@@ -26,7 +26,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "257"
          endingLineNumber = "257"
-         landmarkName = "-makeThumbnailImageViewFromImage:andTimeCode:"
+         landmarkName = "-playerThumbnailImageRequestDidFinish:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -53,6 +53,19 @@
          startingLineNumber = "218"
          endingLineNumber = "218"
          landmarkName = "-movieDurationAvailable:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "DrawOnVideo2/MainProjectView.m"
+         timestampString = "395634035.748311"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "242"
+         endingLineNumber = "242"
+         landmarkName = "-playerThumbnailImageRequestDidFinish:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

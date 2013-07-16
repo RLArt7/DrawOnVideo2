@@ -187,7 +187,7 @@
 - (IBAction)addVideo:(id)sender{
 //    NSString *moviePath = [[NSBundle mainBundle]pathForResource:@"IMG_1990" ofType:@"mov"];
 //    videoUrl=[NSURL fileURLWithPath:moviePath];
-//    NSLog(@"MainProject: %@",videoUrl2);
+//    NSLog(@"MainProject: %@",videoUrl2);/Users/harelavikasis/Desktop/ffmpeg-2.0
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(movieDurationAvailable:) name:MPMovieDurationAvailableNotification object:nil];
     
@@ -238,11 +238,20 @@
 -(void)playerThumbnailImageRequestDidFinish:(NSNotification*)notification {
     NSDictionary *userInfo=[notification userInfo];
     
-    NSNumber *timecode = [userInfo objectForKey:MPMoviePlayerThumbnailTimeKey];
+    NSError* value = [userInfo objectForKey:MPMoviePlayerThumbnailErrorKey];
+    NSNumber *timecode;
+    UIImage *image;
     
-    UIImage *image = [userInfo objectForKey:MPMoviePlayerThumbnailImageKey];
+    
+    if(value == nil){
+        timecode = [userInfo objectForKey: MPMoviePlayerThumbnailTimeKey];
+        image =[userInfo objectForKey: MPMoviePlayerThumbnailImageKey];
+        NSLog(@"What?? width");
+    }
     
     ImageViewWithTime *imageView = [self makeThumbnailImageViewFromImage:image andTimeCode:timecode];
+    
+    
     [thumbnailScrollView addSubview:imageView];
     
     UITapGestureRecognizer *tapRecognizer =
@@ -260,7 +269,7 @@
 
 	float width = 50 * ((float)image.size.width / (float)image.size.height);
     
-//	self.thumbnailScrollView.contentSize = CGSizeMake((width + 2) * 20, 50);
+	self.thumbnailScrollView.contentSize = CGSizeMake((width + 2) * 100, 50);
 //
 	ImageViewWithTime *imageView =
 	[[ImageViewWithTime alloc] initWithImage:image];
