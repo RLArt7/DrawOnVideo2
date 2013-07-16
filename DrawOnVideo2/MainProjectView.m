@@ -13,7 +13,10 @@
 
 
 
-@interface MainProjectView ()
+@interface MainProjectView (){
+    id _timeObserver;
+
+}
 
 
 @end
@@ -26,7 +29,10 @@
 @synthesize videoUrl;
 @synthesize videoUrl2;
 @synthesize player;
+@synthesize thumbnailScrollView;
 //@synthesize moviePath;
+//@synthesize currentTime;
+//@synthesize timeView;
 
 @synthesize viewController;
 
@@ -60,6 +66,8 @@
     drawArray =[[NSMutableArray alloc]init];
     thumbnail=NULL;
     
+   
+    
 //    CGRect firstRect = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) ? CGRectMake(140, 40, 500, 400) : CGRectMake(0, 0, 500, 242);
 //    pushPopPressView_ = [[PSPushPopPressView alloc] initWithFrame:firstRect];
 //    pushPopPressView_.pushPopPressViewDelegate = self;
@@ -72,6 +80,10 @@
 //    tapTwice.numberOfTapsRequired=2;
 //    [self.view addGestureRecognizer:tapTwice];
     [scroller setContentSize:CGSizeMake(66, 242)];
+    
+    
+    
+    
     
     
 	// Do any additional setup after loading the view.
@@ -160,6 +172,9 @@
     UIGraphicsEndImageContext();
     
     [self drawView];
+    
+    
+    
 //     [pushPopPressView_ addSubview:drawView];
 }
 
@@ -174,9 +189,13 @@
 //    videoUrl=[NSURL fileURLWithPath:moviePath];
 //    NSLog(@"MainProject: %@",videoUrl2);
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(movieDurationAvailable:) name:MPMovieDurationAvailableNotification object:nil];
     
+//    player = [[MPMoviePlayerController alloc] initWithContentURL:videoUrl];
+    player = [[MPMoviePlayerController alloc] init];
+    player.contentURL=videoUrl;
+
     
-    player = [[MPMoviePlayerController alloc] initWithContentURL:videoUrl];
 //    NSLog(@"the path:%@",videoUrl);
     thumbnail = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
     [player setMovieSourceType:MPMovieSourceTypeFile];
@@ -184,7 +203,11 @@
     
     [self.videoView addSubview:player.view];
     
+    
+       
+//    player.controlStyle = MPMovieControlStyleFullscreen;
     player.controlStyle = MPMovieControlStyleNone;
+
 //        [player play:self];
     [player prepareToPlay];
     
@@ -192,34 +215,69 @@
     
     
 }
-//-(IBAction)sliding:(id)sender{
-//    CMTime newTime= CMTimeMakeWithSeconds(seeker.value,1);
-//    [self.player seekToTime:newTime];
-//}
-//-(void)setSlider{
-//    sliderTime =[[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateSlider) userInfo: repeats:<#(BOOL)#>];
-//    
-//}
+- (void) movieDurationAvailable:(NSNotification*)notification {
+	float duration = [self.player duration];
+	
+	[[NSNotificationCenter defaultCenter]
+	 addObserver:self
+	 selector:@selector(playerThumbnailImageRequestDidFinish:)
+	 name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
+	 object:nil];
+	
+	NSMutableArray *times = [[NSMutableArray alloc] init];
+	for(int i = 0; i < 20; i++) {
+		float playbackTime = i * duration/20;
+//		NSLog(@"%f", playbackTime);
+		[times addObject:[NSNumber numberWithInt:playbackTime]];
+	}
+	[self.player requestThumbnailImagesAtTimes:times timeOption: MPMovieTimeOptionExact];
+	
+    
+}
 
-//- (void) monitorPlaybackTime
-//{
-//    self.progressIndicator.value = self.mpMoviePlayerController.currentPlaybackTime / self.totalVideoTime;
-//    //constantly keep checking if at the end of video:
-//    if (self.totalVideoTime != 0 && videoPlayer.currentPlaybackTime >= totalVideoTime - 0.1)
-//    {
-//        //-------- rewind code:
-//        self.mpMoviePlayerController.currentPlaybackTime = 0;
-//        [self.mpMoviePlayerController pause];
-//    }
-//    else
-//    {
-//        [self performSelector:@selector(monitorPlaybackTime) withObject:nil afterDelay:kVideoPlaybackUpdateTime];
-//    }
-//}
-//-(IBAction)onTimeSliderChange:(UISlider *)sender{
-//    self.mpMoviePlayerController.currentPlaybackTime=totalVideoTime*timeLineSlider.value;
-//    [self monitorPlaybackTime];
-//}
+-(void)playerThumbnailImageRequestDidFinish:(NSNotification*)notification {
+    NSDictionary *userInfo=[notification userInfo];
+    
+    NSNumber *timecode = [userInfo objectForKey:MPMoviePlayerThumbnailTimeKey];
+    
+    UIImage *image = [userInfo objectForKey:MPMoviePlayerThumbnailImageKey];
+    
+    ImageViewWithTime *imageView = [self makeThumbnailImageViewFromImage:image andTimeCode:timecode];
+    [thumbnailScrollView addSubview:imageView];
+    
+    UITapGestureRecognizer *tapRecognizer =
+    [[UITapGestureRecognizer alloc]
+     initWithTarget:self action:@selector(handleTapFrom:)];
+	[tapRecognizer setNumberOfTapsRequired:1];
+	
+	[imageView addGestureRecognizer:tapRecognizer];
+    
+}
+
+- (ImageViewWithTime *)makeThumbnailImageViewFromImage:(UIImage *)image andTimeCode:(NSNumber *)timecode {
+	float timeslice = self.player.duration / 20.0;
+	float pos = [timecode intValue] / (int)timeslice;
+
+	float width = 50 * ((float)image.size.width / (float)image.size.height);
+    
+//	self.thumbnailScrollView.contentSize = CGSizeMake((width + 2) * 20, 50);
+//
+	ImageViewWithTime *imageView =
+	[[ImageViewWithTime alloc] initWithImage:image];
+	[imageView setUserInteractionEnabled:YES];
+//    [imageView setFrame:CGRectMake(0, 0, 20, 20.0)];
+	[imageView setFrame:CGRectMake(pos * 20 + 2,0,20,50)];
+    
+	imageView.time = [[NSNumber alloc] initWithFloat:(pos * timeslice)];
+	return imageView;
+}
+- (void)handleTapFrom:(UITapGestureRecognizer *)recognizer {
+	ImageViewWithTime *imageView = (ImageViewWithTime *)recognizer.self.view;
+	self.player.currentPlaybackTime = [imageView.time floatValue];
+}
+
+
+
 
 
 - (IBAction)pauseVideo:(id)sender {
@@ -251,144 +309,6 @@
 //    self.videoView=nil;
 }
 
-//- (IBAction)newVideo:(id)sender {
-//    UIActionSheet *actionSheet2 = [[UIActionSheet alloc] initWithTitle:@""
-//                                                              delegate:self
-//                                                     cancelButtonTitle:nil
-//                                                destructiveButtonTitle:nil
-//                                                     otherButtonTitles:@"Capture Video", @"Choose Existing", @"Cancel", nil];
-//    actionSheet2.tag=21;
-//    [actionSheet2 showInView:self.view];
-//}
-//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-//{
-//    if (actionSheet.tag == 21) {
-//        if (buttonIndex == 0){
-//            newVid=YES;
-//            [self startCameraControllerFromViewController:self usingDelegate:self];
-//        }
-//        if (buttonIndex == 1){
-//            newVid=NO;
-//            if ([UIImagePickerController isSourceTypeAvailable:
-//                 UIImagePickerControllerSourceTypeSavedPhotosAlbum] == NO)
-//            {
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No Saved Album Found"  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil, nil];
-//                [alert show];
-//            }else{
-////                isSelectingAssetOne = TRUE;
-//                [self startMediaBrowserFromViewController: self
-//                                            usingDelegate: self];
-//            }
-//
-//            
-//        }
-//    }
-//}
-//- (BOOL) startMediaBrowserFromViewController: (UIViewController*) controller
-//                               usingDelegate: (id <UIImagePickerControllerDelegate,
-//                                               UINavigationControllerDelegate>) delegate {
-//    if (([UIImagePickerController isSourceTypeAvailable:
-//          UIImagePickerControllerSourceTypeSavedPhotosAlbum] == NO)
-//        || (delegate == nil)
-//        || (controller == nil))
-//        return NO;
-//    UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
-//    mediaUI.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-//    
-//    mediaUI.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
-//    
-//    // Hides the controls for moving & scaling pictures, or for
-//    // trimming movies. To instead show the controls, use YES.
-//    mediaUI.allowsEditing = YES;
-//    
-//    mediaUI.delegate = delegate;
-//    
-//    //    [controller presentModalViewController: mediaUI animated: YES];
-//    [controller  presentViewController:mediaUI animated:YES completion:nil];
-//    return YES;
-//}
-//#pragma Capture Vid
-//////////////////////////////////////////////////////////////////////////////////
-///////////////////////////Captrure VID///////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
-//
-//
-//-(BOOL)startCameraControllerFromViewController:(UIViewController*)controller
-//                                 usingDelegate:(id )delegate {
-//    // 1 - Validattions
-//    if (([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO)
-//        || (delegate == nil)
-//        || (controller == nil)) {
-//        return NO;
-//    }
-//    // 2 - Get image picker
-//    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
-//    cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
-//    // Displays a control that allows the user to choose movie capture
-//    cameraUI.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *)kUTTypeMovie, nil];
-//    // Hides the controls for moving & scaling pictures, or for
-//    // trimming movies. To instead show the controls, use YES.
-//    cameraUI.allowsEditing = NO;
-//    cameraUI.delegate = delegate;
-//    // 3 - Display image picker
-//    [controller presentViewController:cameraUI animated:YES completion:nil];
-//    return YES;
-//}
-//-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-//    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
-//    [self dismissViewControllerAnimated:NO completion:nil];
-//    //    [self dismissModalViewControllerAnimated:NO];
-//    // Handle a movie capture
-//    if(newVid){
-//        if (CFStringCompare ((__bridge_retained CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
-//            NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
-//            videoUrl=[NSURL fileURLWithPath:moviePath];
-//            if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(moviePath)) {
-//                UISaveVideoAtPathToSavedPhotosAlbum(moviePath, self,
-//                                                    @selector(video:didFinishSavingWithError:contextInfo:), nil);
-//            }
-//        }
-//        
-//    }
-//    // For responding to the user accepting a newly-captured picture or movie
-//    else{
-//        NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
-//        
-//        if (CFStringCompare ((__bridge CFStringRef) mediaType, kUTTypeMovie, 0)
-//            == kCFCompareEqualTo)
-//        {
-//            NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
-//            videoUrl=[NSURL fileURLWithPath:moviePath];
-//            
-//            if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (mediaType)) {
-//                UISaveVideoAtPathToSavedPhotosAlbum (mediaType, nil, nil, nil);
-//            }
-//        }
-//        
-//        
-////        [self dismissViewControllerAnimated:YES completion:nil];
-//        
-//        
-//        //        [picker release];
-//    }
-//}
-//
-/////Change that to TOast!
-//-(void)video:(NSString*)videoPath didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo {
-//    if (error) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed"
-//                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        [alert show];
-//    } else {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Library"
-//                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        [alert show];
-//    }
-//}
-
-
-
-
 
 
 
@@ -419,7 +339,10 @@
     
     myButton.frame = CGRectMake(276, 25, 73, 71); // position in the parent view and set the size of the button
     if(thumbnail!=NULL){
+        myButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        myButton.frame = CGRectMake(276, 25, 73, 71); // position in the parent view and set the size of the button
         [myButton setImage:thumbnail forState:UIControlStateNormal];
+        
     }else{
         [myButton setImage:defaultImage forState:UIControlStateNormal];
     }
@@ -456,9 +379,6 @@
     [self presentViewController:view animated:YES completion:nil];
 
 }
-//-(IBAction)testMethod:(id)sender{
-//    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"work" message:@"work" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:nil, nil];
-//    [alert show];
-//}
+
 
 @end

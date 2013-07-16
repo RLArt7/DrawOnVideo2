@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		930C5092179440A80042665D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 930C5091179440A80042665D /* AVFoundation.framework */; };
+		930C50951794A55A0042665D /* ImageViewWithTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C50931794A55A0042665D /* ImageViewWithTime.m */; };
 		93BC0AA917248E4E002428C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BC0AA817248E4E002428C5 /* UIKit.framework */; };
 		93BC0AAB17248E4E002428C5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BC0AAA17248E4E002428C5 /* Foundation.framework */; };
 		93BC0AAD17248E4E002428C5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BC0AAC17248E4E002428C5 /* CoreGraphics.framework */; };
@@ -36,6 +38,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		930C5091179440A80042665D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		930C50931794A55A0042665D /* ImageViewWithTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewWithTime.m; sourceTree = "<group>"; };
+		930C50941794A55A0042665D /* ImageViewWithTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewWithTime.h; sourceTree = "<group>"; };
 		93BC0AA517248E4E002428C5 /* DrawOnVideo2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawOnVideo2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93BC0AA817248E4E002428C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		93BC0AAA17248E4E002428C5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -76,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				930C5092179440A80042665D /* AVFoundation.framework in Frameworks */,
 				93BC0ADA17248F8C002428C5 /* QuartzCore.framework in Frameworks */,
 				93BC0AD817248F87002428C5 /* AssetsLibrary.framework in Frameworks */,
 				93BC0AD617248F7C002428C5 /* MobileCoreServices.framework in Frameworks */,
@@ -110,6 +116,7 @@
 		93BC0AA717248E4E002428C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				930C5091179440A80042665D /* AVFoundation.framework */,
 				93BC0AD917248F8C002428C5 /* QuartzCore.framework */,
 				93BC0AD717248F87002428C5 /* AssetsLibrary.framework */,
 				93BC0AD517248F7B002428C5 /* MobileCoreServices.framework */,
@@ -130,6 +137,8 @@
 				93BC0AC017248E4E002428C5 /* MainStoryboard.storyboard */,
 				93BC0ACC17248E9D002428C5 /* PSPushPopPressView.h */,
 				93BC0ACF17248F08002428C5 /* PSPushPopPressView.m */,
+				930C50931794A55A0042665D /* ImageViewWithTime.m */,
+				930C50941794A55A0042665D /* ImageViewWithTime.h */,
 				93BC0ACB17248E8B002428C5 /* MainProjectView.h */,
 				93BC0ACD17248F00002428C5 /* MainProjectView.m */,
 				93BC0AC317248E4E002428C5 /* ViewController.h */,
@@ -248,6 +257,7 @@
 				93BC0AC517248E4E002428C5 /* ViewController.m in Sources */,
 				93BC0ACE17248F00002428C5 /* MainProjectView.m in Sources */,
 				93BC0AD017248F08002428C5 /* PSPushPopPressView.m in Sources */,
+				930C50951794A55A0042665D /* ImageViewWithTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

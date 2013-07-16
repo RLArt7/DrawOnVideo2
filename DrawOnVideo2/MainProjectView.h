@@ -12,6 +12,9 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <QuartzCore/QuartzCore.h>
 #import "PSPushPopPressView.h"
+#import "ImageViewWithTime.h"
+//#import <AVFoundation/AVFoundation.h>
+
 
 
 //#import "ViewController.h"
@@ -22,6 +25,7 @@
     NSURL *videoUrl;
     NSURL *videoUrl2;
     UIViewController *viewController;
+    
     
     
     MPMoviePlayerController *player;
@@ -37,6 +41,8 @@
     
     NSUInteger *activeCount_;
     
+    UIScrollView *thumbnailScrollView;
+    
     
     
     PSPushPopPressView *pushPopPressView_;
@@ -47,6 +53,14 @@
 - (IBAction)pauseVideo:(id)sender;
 - (IBAction)undoButton:(id)sender;
 - (IBAction)resetButton:(id)sender;
+
+
+- (void)playerThumbnailImageRequestDidFinish:(NSNotification*)notification;
+- (void)handleTapFrom:(UITapGestureRecognizer *)recognizer;
+- (ImageViewWithTime *)makeThumbnailImageViewFromImage:(UIImage *)image andTimeCode:(NSNumber *)timecode;
+
+
+
 //-(IBAction)onTimeSliderChange:(UISlider *)sender;
 //- (IBAction)newVideo:(id)sender;
 - (IBAction)save:(id)sender;
@@ -57,6 +71,16 @@
 @property (weak, nonatomic) IBOutlet UIImageView *drawView;
 @property (weak, nonatomic) IBOutlet UIImageView *tempDrawImage;
 @property MPMoviePlayerController *player;
+
+@property (nonatomic, retain) IBOutlet UIScrollView *thumbnailScrollView;
+//@property (weak, nonatomic) IBOutlet UIScrollView *thumbnailScrollView;
+
+//@property (strong, nonatomic) AVPlayer *player;
+
+//@property (nonatomic, weak) IBOutlet UILabel *currentTime;
+//@property (nonatomic, weak) IBOutlet UIView *timeView;
+
+
 
 @property BOOL newVid;
 @property NSURL  *videoUrl;
