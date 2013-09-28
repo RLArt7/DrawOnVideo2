@@ -30,6 +30,7 @@
 @synthesize videoUrl2;
 @synthesize player;
 @synthesize thumbnailScrollView;
+@synthesize isThereSavedData;
 //@synthesize moviePath;
 //@synthesize currentTime;
 //@synthesize timeView;
@@ -86,6 +87,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     videoUrl=videoUrl2;
+    isThereSavedData=NO;
 
 }
 - (void)viewDidLayoutSubviews
@@ -172,13 +174,13 @@
 - (IBAction)addVideo:(id)sender{
 
     ///S TESTING
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSString *moviePath =
-    [bundle
-     pathForResource:@"BigBuckBunny_640x360"
-     ofType:@"m4v"];
-    
-    videoUrl=[NSURL fileURLWithPath:moviePath];
+//    NSBundle *bundle = [NSBundle mainBundle];
+//    NSString *moviePath =
+//    [bundle
+//     pathForResource:@"BigBuckBunny_640x360"
+//     ofType:@"m4v"];
+//    
+//    videoUrl=[NSURL fileURLWithPath:moviePath];
     ///E TESTING
     
     
@@ -318,6 +320,7 @@
     //create Instanse of ViewController
     
     [player pause];
+    isThereSavedData=YES;
     MainProjectView *view = [self.storyboard
                             instantiateViewControllerWithIdentifier:@"ViewController"];
     view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -326,7 +329,7 @@
     UIImage * defaultImage = [UIImage imageNamed:@"pictures.png"];
     UIButton *myButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    UILabel *myLabel=[[UILabel alloc] initWithFrame:CGRectMake(289,116,72,21)];
-    UITextField *myTextFiled=[[UITextField alloc] initWithFrame:CGRectMake(262,104,100,21)];
+    UITextField *myTextFiled=[[UITextField alloc] initWithFrame:CGRectMake(261,104,100,21)];
     [myTextFiled setTextColor:[UIColor blackColor]];
     [myTextFiled setTextAlignment:NSTextAlignmentCenter];
     [myTextFiled setBackgroundColor:[UIColor clearColor]];
@@ -340,8 +343,10 @@
     myButton.frame = CGRectMake(276, 25, 73, 71); // position in the parent view and set the size of the button
     if(thumbnail!=NULL){
         myButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        myButton.frame = CGRectMake(276, 25, 73, 71); // position in the parent view and set the size of the button
+        myButton.frame = CGRectMake(279, 30, 62, 62); // position in the parent view and set the size of the button
         [myButton setImage:thumbnail forState:UIControlStateNormal];
+        myButton.layer.cornerRadius=10;
+        myButton.clipsToBounds=YES;
         
     }else{
         [myButton setImage:defaultImage forState:UIControlStateNormal];

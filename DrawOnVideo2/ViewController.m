@@ -10,13 +10,19 @@
 //#import "AppDelegateProtocol.h"
 //#import "AppDataObject.h"
 
+//
+//@interface UIDevice()
+//-(void)setOrientarion:(UIDeviceOrientation) orientarion;
+//@end
+
 @interface ViewController ()
+
+
 
 @end
 
 @implementation ViewController
 @synthesize newVid;
-//@synthesize myDelegate;
 @synthesize videoUrl;
 @synthesize videoUrl2;
 @synthesize mainProjectView;
@@ -64,8 +70,15 @@
         }
         if (buttonIndex == 1){
             newVid=NO;
-            UIImagePickerController *imagePicker =
-            [[UIImagePickerController alloc] init];
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+            
+//            [[UIDevice currentDevice] setOrientarion:UIInterfaceOrientationLandscapeRight];
+////
+//            [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+////
+//            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
+            
+            
             imagePicker.delegate = self;
             imagePicker.sourceType =
             UIImagePickerControllerSourceTypePhotoLibrary;
@@ -86,7 +99,24 @@
         }
     }
 }
+//-(void)isThereData{
+//    if(self.mainProjectView.isThereSavedData){
+//        [self loadProject];
+//    }
+//}
+-(IBAction)loadProject:(id)sender{
+    MainProjectView *view=[self.storyboard
+                           instantiateViewControllerWithIdentifier:@"ViewController"];
+    if(view.isThereSavedData){
+        
+        self.mainProjectView=(MainProjectView *)view;
+        
+        self.mainProjectView.videoUrl2=self.videoUrl;
 
+        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:view animated:YES completion:nil];
+    }
+}
 #pragma Capture Vid
 ////////////////////////////////////////////////////////////////////////////////
 /////////////////////////Captrure VID///////////////////////////////////////
@@ -103,6 +133,7 @@
     }
     // 2 - Get image picker
     UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    
     cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
     // Displays a control that allows the user to choose movie capture
     cameraUI.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *)kUTTypeMovie, nil];
@@ -114,11 +145,7 @@
     [controller presentViewController:cameraUI animated:YES completion:nil];
     return YES;
 }
-//- (void)textFieldDidEndEditing:(NSURL *)info
-//{
-////	AppDataObject* theDataObject = [self theAppDataObject];
-////	theDataObject.videoUrl = videoUrl;
-//}
+
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
@@ -152,6 +179,8 @@
     else{
         NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
         
+        
+        
         if (CFStringCompare ((__bridge CFStringRef) mediaType, kUTTypeMovie, 0)
             == kCFCompareEqualTo)
         {
@@ -171,22 +200,8 @@
 
             
         }
-//        ViewController *view = [self.storyboard
-//                                instantiateViewControllerWithIdentifier:@"MainProjectView"];
-//        view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//        //    NSLog(@"VIEW LOOOOOOOOKKKKKEEEE HEEREEEE: %@",view);
-//        self.mainProjectView=(MainProjectView *)view;
-//        mainProjectView.videoUrl=self.videoUrl;
-//        [self presentViewController:view animated:YES completion:nil];
-        
-        
-       
-        
-        
-        //        [picker release];
     }
 }
-
 ///Change that to TOast!
 -(void)video:(NSString*)videoPath didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo {
     if (error) {

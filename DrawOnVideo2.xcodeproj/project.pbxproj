@@ -209,6 +209,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Harel Avikasis";
+				TargetAttributes = {
+					93BC0AA417248E4E002428C5 = {
+						DevelopmentTeam = 38CVLR43PR;
+					};
+				};
 			};
 			buildConfigurationList = 93BC0AA017248E4E002428C5 /* Build configuration list for PBXProject "DrawOnVideo2" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -346,8 +351,8 @@
 		93BC0AC917248E4E002428C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = FakeCode;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = FakeCode;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DrawOnVideo2/DrawOnVideo2-Prefix.pch";
 				INFOPLIST_FILE = "DrawOnVideo2/DrawOnVideo2-Info.plist";
@@ -361,8 +366,8 @@
 		93BC0ACA17248E4E002428C5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = FakeCode;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = FakeCode;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DrawOnVideo2/DrawOnVideo2-Prefix.pch";
 				INFOPLIST_FILE = "DrawOnVideo2/DrawOnVideo2-Info.plist";

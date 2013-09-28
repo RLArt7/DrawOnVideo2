@@ -44,6 +44,9 @@
     UIScrollView *thumbnailScrollView;
     
     
+    BOOL isThereSavedData;
+    
+    
     
     PSPushPopPressView *pushPopPressView_;
     PSPushPopPressView *pushPopPressVideoView_;
@@ -85,7 +88,8 @@
 @property BOOL newVid;
 @property NSURL  *videoUrl;
 @property NSURL  *videoUrl2;
-//@property NSString *moviePath;
+@property BOOL isThereSavedData;
+
 
 //- (BOOL) startMediaBrowserFromViewController: (UIViewController*) controller
 //                               usingDelegate: (id <UIImagePickerControllerDelegate,
