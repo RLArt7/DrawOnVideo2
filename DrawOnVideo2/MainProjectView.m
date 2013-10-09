@@ -187,7 +187,7 @@
     player = [[MPMoviePlayerController alloc] init];
     player.contentURL=videoUrl;
     
-    thumbnail = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
+    thumbnail = [player thumbnailImageAtTime:2.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
     [player setMovieSourceType:MPMovieSourceTypeFile];
     [player.view setFrame:self.videoView.bounds];
     
